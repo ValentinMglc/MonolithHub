@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 using MonolithHub.Diagnostics;
+using MonolithHub.Hardware;
 using MonolithHub.Lighting;
 using MonolithHub.Shell;
 
@@ -32,6 +33,14 @@ public partial class App : Application
         {
             Cleanup.Run(removeSettings: HasArg(e, "--purge"));
             Shutdown();
+            return;
+        }
+
+        if (HasArg(e, "--install-pawnio"))
+        {
+            var installed = PawnIoDriver.IsInstalled() || Task.Run(PawnIoDriver.InstallAsync).GetAwaiter().GetResult();
+            Log.Info($"Installation de PawnIO depuis l'installateur : {(installed ? "réussie" : "échec")}");
+            Shutdown(installed ? 0 : 1);
             return;
         }
 

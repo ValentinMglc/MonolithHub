@@ -11,7 +11,7 @@
     <RootNamespace>MonolithHub</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>app.ico</ApplicationIcon>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <InvariantGlobalization>false</InvariantGlobalization>
     <NeutralLanguage>en</NeutralLanguage>
     <SatelliteResourceLanguages>en;fr</SatelliteResourceLanguages>

@@ -1,0 +1,39 @@
+name: Model support request / Prise en charge d'un modèle
+description: Ask for lighting support on another HP OMEN PC. / Demander la prise en charge de l'éclairage d'un autre PC HP OMEN.
+labels: [model-support]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Lighting currently works with the HP USB controller `103C:84FD` (OMEN Obelisk 875, likely OMEN 30L).
+        L'éclairage fonctionne aujourd'hui avec le contrôleur USB HP `103C:84FD` (OMEN Obelisk 875, probablement OMEN 30L).
+  - type: input
+    id: pc-model
+    attributes:
+      label: PC model / Modèle du PC
+      description: System page → Computer → Model. / Page Système → Ordinateur → Modèle.
+      placeholder: "OMEN 25L Desktop GT12-xxxx"
+    validations:
+      required: true
+  - type: textarea
+    id: lighting
+    attributes:
+      label: Lighting zones / Zones lumineuses
+      description: Which parts of the PC light up (logo, fans, light bar, keyboard…)? / Quelles parties du PC s'allument (logo, ventilateurs, barre, clavier…) ?
+    validations:
+      required: true
+  - type: textarea
+    id: usb-devices
+    attributes:
+      label: HP USB devices / Périphériques USB HP
+      description: |
+        Run this command in PowerShell and paste the result. / Lancez cette commande dans PowerShell et collez le résultat.
+        `Get-PnpDevice -PresentOnly | Where-Object InstanceId -match 'VID_103C' | Format-Table Class, FriendlyName, InstanceId -AutoSize`
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log / Journal
+      description: Settings → About → Open log, then attach monolith-hub.log. / Paramètres → À propos → Ouvrir le journal, puis joignez monolith-hub.log.

@@ -49,9 +49,16 @@ french.LaunchApp=Lancer Monolith Hub
 english.LaunchApp=Launch Monolith Hub
 french.RemoveSettings=Voulez-vous aussi supprimer vos réglages Monolith Hub (profils, couleurs, seuils d'alerte) ?
 english.RemoveSettings=Do you also want to delete your Monolith Hub settings (profiles, colors, alert thresholds)?
+french.PawnIOGroup=Pilote facultatif (gratuit, signé et open source) :
+english.PawnIOGroup=Optional driver (free, signed and open source):
+french.PawnIOTask=Installer PawnIO pour afficher la température, la fréquence et la puissance du processeur
+english.PawnIOTask=Install PawnIO to show the processor temperature, clock and power
+french.PawnIOStatus=Installation du pilote PawnIO…
+english.PawnIOStatus=Installing the PawnIO driver…
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:DesktopIconTask}"; Flags: unchecked
+Name: "pawnio"; Description: "{cm:PawnIOTask}"; GroupDescription: "{cm:PawnIOGroup}"; Check: PawnIONeeded
 
 [Files]
 Source: "{#SourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -63,12 +70,18 @@ Name: "{autoprograms}\{#AppName}"; Filename: "{app}\{#AppExe}"
 Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopicon
 
 [Run]
+Filename: "{app}\{#AppExe}"; Parameters: "--install-pawnio"; StatusMsg: "{cm:PawnIOStatus}"; Tasks: pawnio; Flags: runhidden waituntilterminated
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchApp}"; Flags: nowait postinstall skipifsilent shellexec
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
 
 [Code]
+function PawnIONeeded: Boolean;
+begin
+  Result := not RegKeyExists(HKLM, 'SYSTEM\CurrentControlSet\Services\PawnIO');
+end;
+
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
   ResultCode: Integer;

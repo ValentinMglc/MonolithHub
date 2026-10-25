@@ -83,7 +83,8 @@ Votre modèle n'est pas reconnu ? [Ouvrez un ticket](../../issues) en joignant l
 > (Sécurité Windows → Contrôle des applications et du navigateur).
 
 > **Température du CPU** - elle nécessite le pilote gratuit et open source [PawnIO](https://pawnio.eu).
-> S'il manque, Monolith Hub l'indique et propose de l'installer en un clic.
+> L'installateur propose de l'installer (case cochée par défaut, décochez-la si vous n'en voulez pas).
+> S'il manque plus tard, Monolith Hub l'indique et propose de l'installer en un clic.
 
 Le runtime .NET est inclus : rien d'autre à installer.
 

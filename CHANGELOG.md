@@ -3,6 +3,13 @@
 Toutes les évolutions notables de Monolith Hub. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/),
 numérotation [SemVer](https://semver.org/lang/fr/).
 
+## [1.1.0] - 2026-10-25
+
+### Ajouté
+- L'installateur propose d'installer le pilote PawnIO (case cochée par défaut, affichée seulement s'il manque),
+  pour avoir dès le premier lancement la température, la fréquence et la puissance du processeur
+- Modèles de tickets GitHub : signaler un bug, demander la prise en charge d'un modèle
+
 ## [1.0.0] - 2026-10-25
 
 Première version publique : une alternative légère et sans publicité à l'OMEN Gaming Hub.

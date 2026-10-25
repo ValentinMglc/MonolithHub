@@ -1,0 +1,58 @@
+name: Bug report / Signaler un bug
+description: Something does not work as expected. / Quelque chose ne fonctionne pas comme prévu.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. / Merci de prendre le temps de signaler un problème.
+        English or French are both fine. / Anglais ou français, au choix.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened? / Que s'est-il passé ?
+      description: What did you do, what did you expect, and what happened instead? / Ce que vous avez fait, ce que vous attendiez et ce qui s'est passé.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Monolith Hub version / Version de Monolith Hub
+      description: Settings → About. / Paramètres → À propos.
+      placeholder: "1.1.0"
+    validations:
+      required: true
+  - type: input
+    id: pc-model
+    attributes:
+      label: PC model / Modèle du PC
+      description: System page → Computer → Model. / Page Système → Ordinateur → Modèle.
+      placeholder: "OMEN by HP Obelisk Desktop 875-0xxx"
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version / Version de Windows
+      placeholder: "Windows 11 24H2"
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area / Partie concernée
+      options:
+        - Dashboard / Tableau de bord
+        - Sensors / Capteurs
+        - Lighting / Éclairage
+        - Tray icon, alerts, startup / Icône, alertes, démarrage
+        - Installer / Installateur
+        - Other / Autre
+  - type: textarea
+    id: log
+    attributes:
+      label: Log / Journal
+      description: Settings → About → Open log, then attach monolith-hub.log (drag and drop). / Paramètres → À propos → Ouvrir le journal, puis joignez monolith-hub.log (glisser-déposer).
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / Captures
+      description: Optional. Please hide your serial number. / Facultatif. Pensez à masquer votre numéro de série.
