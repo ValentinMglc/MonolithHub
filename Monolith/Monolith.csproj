@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <!-- Uniquement pour NotifyIcon (icône de la zone de notification). -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Monolith</AssemblyName>
+    <RootNamespace>Monolith</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <Product>Monolith</Product>
+    <Title>Monolith</Title>
+    <Description>Monitoring et éclairage pour PC HP OMEN — alternative légère à l'OMEN Gaming Hub. Non affilié à HP Inc.</Description>
+    <Authors>ValentinMglc</Authors>
+    <Copyright>Copyright © 2026 ValentinMglc — licence MIT</Copyright>
+    <RepositoryUrl>https://github.com/ValentinMglc/monolith-hub</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="app.ico" />
+  </ItemGroup>
+
+  <!-- Évite les conflits de noms WinForms/WPF (Button, Color, Brush…). -->
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HidSharp" Version="2.6.4" />
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6" />
+    <PackageReference Include="System.Management" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>

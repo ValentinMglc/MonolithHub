@@ -1,0 +1,14 @@
+# Sorties de compilation .NET
+bin/
+obj/
+publish/
+*.user
+
+# Éditeurs
+.vs/
+.vscode/
+.idea/
+
+# Système
+Thumbs.db
+desktop.ini
