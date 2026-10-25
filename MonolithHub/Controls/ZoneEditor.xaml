@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="MonolithHub.Controls.ZoneEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:MonolithHub.Localization">
+    <StackPanel>
+        <TextBlock Text="{l:T Zone_Effect}" Style="{StaticResource Caption}" Margin="0,0,0,8"/>
+        <WrapPanel x:Name="ModePanel" Margin="0,0,0,14">
+            <RadioButton Content="{l:T Mode_Static}" Tag="Static" Style="{StaticResource SegmentButton}" Checked="OnModeChecked"/>
+            <RadioButton Content="{l:T Mode_Breathing}" Tag="Breathing" Style="{StaticResource SegmentButton}" Checked="OnModeChecked"/>
+            <RadioButton Content="{l:T Mode_Blinking}" Tag="Blinking" Style="{StaticResource SegmentButton}" Checked="OnModeChecked"/>
+            <RadioButton Content="{l:T Mode_Cycle}" Tag="ColorCycle" Style="{StaticResource SegmentButton}" Checked="OnModeChecked"/>
+            <RadioButton Content="{l:T Light_Off}" Tag="Off" Style="{StaticResource SegmentButton}" Checked="OnModeChecked"/>
+        </WrapPanel>
+
+        <StackPanel x:Name="ColorSection" Margin="0,0,0,10">
+            <TextBlock Text="{l:T Zone_Color}" Style="{StaticResource Caption}" Margin="0,0,0,8"/>
+            <WrapPanel x:Name="Swatches" Margin="3,3,0,4"/>
+            <Grid Margin="0,4,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="ColorPreview" Width="36" Height="36" CornerRadius="8" Background="Red" Margin="0,0,14,0"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="{l:T Zone_CustomHue}" Style="{StaticResource SubtleText}" Margin="0,0,0,2"/>
+                    <Slider x:Name="HueSlider" Minimum="0" Maximum="359" ValueChanged="OnHueChanged">
+                        <Slider.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FF0000" Offset="0"/>
+                                <GradientStop Color="#FFFF00" Offset="0.167"/>
+                                <GradientStop Color="#00FF00" Offset="0.333"/>
+                                <GradientStop Color="#00FFFF" Offset="0.5"/>
+                                <GradientStop Color="#0000FF" Offset="0.667"/>
+                                <GradientStop Color="#FF00FF" Offset="0.833"/>
+                                <GradientStop Color="#FF0000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Slider.Background>
+                    </Slider>
+                </StackPanel>
+                <TextBox x:Name="HexBox" Grid.Column="2" Width="86" Margin="14,0,0,0" Style="{StaticResource InputBox}"
+                         FontFamily="Consolas" ToolTip="{l:T Zone_HexTip}"
+                         KeyDown="OnHexKeyDown" LostFocus="OnHexLostFocus"/>
+            </Grid>
+        </StackPanel>
+
+        <TextBlock x:Name="CycleHint" Style="{StaticResource SubtleText}" TextWrapping="Wrap" Margin="0,0,0,14"
+                   Text="{l:T Zone_CycleHint}"/>
+
+        <StackPanel x:Name="BrightnessSection" Margin="0,0,0,10">
+            <DockPanel Margin="0,0,0,4">
+                <TextBlock x:Name="BrightnessText" DockPanel.Dock="Right" FontWeight="SemiBold"/>
+                <TextBlock Text="{l:T Zone_Brightness}" Style="{StaticResource Caption}" VerticalAlignment="Center"/>
+            </DockPanel>
+            <Slider x:Name="BrightnessSlider" Minimum="5" Maximum="100" SmallChange="1" LargeChange="10"
+                    ValueChanged="OnBrightnessChanged">
+                <Slider.Background>
+                    <LinearGradientBrush x:Name="BrightnessGradient" StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#25262D" Offset="0"/>
+                        <GradientStop x:Name="BrightnessEnd" Color="Red" Offset="1"/>
+                    </LinearGradientBrush>
+                </Slider.Background>
+            </Slider>
+        </StackPanel>
+
+        <StackPanel x:Name="SpeedSection">
+            <TextBlock Text="{l:T Zone_Speed}" Style="{StaticResource Caption}" Margin="0,0,0,8"/>
+            <WrapPanel x:Name="SpeedPanel">
+                <RadioButton Content="{l:T Speed_Slow}" Tag="Slow" Style="{StaticResource SegmentButton}" Checked="OnSpeedChecked"/>
+                <RadioButton Content="{l:T Speed_Medium}" Tag="Medium" Style="{StaticResource SegmentButton}" Checked="OnSpeedChecked"/>
+                <RadioButton Content="{l:T Speed_Fast}" Tag="Fast" Style="{StaticResource SegmentButton}" Checked="OnSpeedChecked"/>
+            </WrapPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

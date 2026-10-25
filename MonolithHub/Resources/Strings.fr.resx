@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Nav_Dashboard" xml:space="preserve"><value>Tableau de bord</value></data>
+  <data name="Nav_Sensors" xml:space="preserve"><value>Capteurs</value></data>
+  <data name="Nav_Lighting" xml:space="preserve"><value>Éclairage</value></data>
+  <data name="Nav_System" xml:space="preserve"><value>Système</value></data>
+  <data name="Nav_Settings" xml:space="preserve"><value>Paramètres</value></data>
+  <data name="Mini_LightingPending" xml:space="preserve"><value>Éclairage…</value></data>
+  <data name="Caption_Minimize" xml:space="preserve"><value>Réduire</value></data>
+  <data name="Caption_Maximize" xml:space="preserve"><value>Agrandir</value></data>
+  <data name="Caption_Restore" xml:space="preserve"><value>Restaurer</value></data>
+  <data name="Caption_Close" xml:space="preserve"><value>Fermer</value></data>
+  <data name="Dash_Live" xml:space="preserve"><value>En direct</value></data>
+  <data name="Dash_Starting" xml:space="preserve"><value>Démarrage…</value></data>
+  <data name="Common_Processor" xml:space="preserve"><value>Processeur</value></data>
+  <data name="Common_GraphicsCard" xml:space="preserve"><value>Carte graphique</value></data>
+  <data name="Common_Memory" xml:space="preserve"><value>Mémoire</value></data>
+  <data name="Dash_UsageHistory" xml:space="preserve"><value>UTILISATION · 60 S</value></data>
+  <data name="Dash_UsageLabel" xml:space="preserve"><value>utilisation</value></data>
+  <data name="Dash_UsedLabel" xml:space="preserve"><value>utilisée</value></data>
+  <data name="Dash_Temperature" xml:space="preserve"><value>TEMPÉRATURE</value></data>
+  <data name="Dash_UsedCaption" xml:space="preserve"><value>UTILISÉE</value></data>
+  <data name="Dash_Clock" xml:space="preserve"><value>Fréquence</value></data>
+  <data name="Dash_Power" xml:space="preserve"><value>Puissance</value></data>
+  <data name="Dash_Available" xml:space="preserve"><value>Disponible</value></data>
+  <data name="Dash_Network" xml:space="preserve"><value>Réseau</value></data>
+  <data name="Dash_Download" xml:space="preserve"><value>RÉCEPTION</value></data>
+  <data name="Dash_Upload" xml:space="preserve"><value>ENVOI</value></data>
+  <data name="Dash_Storage" xml:space="preserve"><value>Stockage</value></data>
+  <data name="Dash_TaskManager" xml:space="preserve"><value>Gestionnaire des tâches</value></data>
+  <data name="Dash_TopProcesses" xml:space="preserve"><value>Processus les plus actifs</value></data>
+  <data name="Dash_ColName" xml:space="preserve"><value>NOM</value></data>
+  <data name="Dash_ColCpu" xml:space="preserve"><value>PROCESSEUR</value></data>
+  <data name="Dash_ColMemory" xml:space="preserve"><value>MÉMOIRE</value></data>
+  <data name="Drive_Summary" xml:space="preserve"><value>{0:0} Go libres sur {1:0} Go</value></data>
+  <data name="Drive_Local" xml:space="preserve"><value>Disque local</value></data>
+  <data name="Unit_GB" xml:space="preserve"><value>Go</value></data>
+  <data name="Unit_MB" xml:space="preserve"><value>Mo</value></data>
+  <data name="Unit_KBps" xml:space="preserve"><value>Ko/s</value></data>
+  <data name="Unit_Rpm" xml:space="preserve"><value>tr/min</value></data>
+  <data name="Driver_MissingTitle" xml:space="preserve"><value>Température CPU indisponible</value></data>
+  <data name="Driver_MissingText" xml:space="preserve"><value>Le pilote gratuit PawnIO (signé, open source) est nécessaire pour lire la température, la fréquence et la puissance du processeur.</value></data>
+  <data name="Driver_Install" xml:space="preserve"><value>Installer PawnIO</value></data>
+  <data name="Driver_UnresponsiveTitle" xml:space="preserve"><value>PawnIO ne répond pas</value></data>
+  <data name="Driver_UnresponsiveText" xml:space="preserve"><value>Le pilote est installé mais inaccessible. Revérifiez, ou redémarrez le PC si ça persiste.</value></data>
+  <data name="Driver_Recheck" xml:space="preserve"><value>Revérifier</value></data>
+  <data name="Driver_InstallingTitle" xml:space="preserve"><value>Installation de PawnIO…</value></data>
+  <data name="Driver_InstallingText" xml:space="preserve"><value>Cela peut prendre une minute.</value></data>
+  <data name="Driver_Wait" xml:space="preserve"><value>Patientez…</value></data>
+  <data name="Pawn_Title" xml:space="preserve"><value>Pilote PawnIO (température CPU)</value></data>
+  <data name="Pawn_Ok" xml:space="preserve"><value>Installé et actif</value></data>
+  <data name="Pawn_Missing" xml:space="preserve"><value>Non installé : température CPU indisponible</value></data>
+  <data name="Pawn_Unresponsive" xml:space="preserve"><value>Installé mais inaccessible</value></data>
+  <data name="Pawn_Installing" xml:space="preserve"><value>Installation en cours…</value></data>
+  <data name="Pawn_InstallShort" xml:space="preserve"><value>Installer</value></data>
+  <data name="Toast_PawnFailed" xml:space="preserve"><value>Installation automatique impossible : page de téléchargement ouverte</value></data>
+  <data name="Toast_PawnInstalled" xml:space="preserve"><value>PawnIO installé</value></data>
+  <data name="Toast_SensorsRestarted" xml:space="preserve"><value>Capteurs relancés</value></data>
+  <data name="Sensors_Search" xml:space="preserve"><value>Rechercher un capteur…</value></data>
+  <data name="Sensors_Current" xml:space="preserve"><value>ACTUEL</value></data>
+  <data name="Sensors_Empty" xml:space="preserve"><value>Aucun capteur ne correspond à la recherche.</value></data>
+  <data name="Sec_Temperature" xml:space="preserve"><value>TEMPÉRATURES</value></data>
+  <data name="Sec_Load" xml:space="preserve"><value>UTILISATION</value></data>
+  <data name="Sec_Clock" xml:space="preserve"><value>FRÉQUENCES</value></data>
+  <data name="Sec_Power" xml:space="preserve"><value>PUISSANCE</value></data>
+  <data name="Sec_Voltage" xml:space="preserve"><value>TENSIONS</value></data>
+  <data name="Sec_Current" xml:space="preserve"><value>COURANT</value></data>
+  <data name="Sec_Fan" xml:space="preserve"><value>VENTILATEURS</value></data>
+  <data name="Sec_Control" xml:space="preserve"><value>CONTRÔLE DES VENTILATEURS</value></data>
+  <data name="Sec_Data" xml:space="preserve"><value>DONNÉES</value></data>
+  <data name="Sec_Throughput" xml:space="preserve"><value>DÉBIT</value></data>
+  <data name="Sec_Energy" xml:space="preserve"><value>ÉNERGIE</value></data>
+  <data name="Light_On" xml:space="preserve"><value>Allumé</value></data>
+  <data name="Light_Off" xml:space="preserve"><value>Éteint</value></data>
+  <data name="Ctrl_Connected" xml:space="preserve"><value>Contrôleur connecté</value></data>
+  <data name="Ctrl_Tip" xml:space="preserve"><value>Contrôleur USB HP 103C:84FD</value></data>
+  <data name="Ctrl_Busy" xml:space="preserve"><value>Contrôleur occupé</value></data>
+  <data name="Ctrl_BusyTip" xml:space="preserve"><value>Une autre application (l&apos;OMEN Gaming Hub ?) utilise le contrôleur. Fermez-la : Monolith Hub se reconnectera tout seul.</value></data>
+  <data name="Ctrl_None" xml:space="preserve"><value>Aucun contrôleur</value></data>
+  <data name="Ctrl_NoneTip" xml:space="preserve"><value>Aucun contrôleur d&apos;éclairage compatible détecté.</value></data>
+  <data name="Dot_Connected" xml:space="preserve"><value>Éclairage connecté</value></data>
+  <data name="Dot_Busy" xml:space="preserve"><value>Éclairage occupé</value></data>
+  <data name="Dot_Unsupported" xml:space="preserve"><value>Éclairage non pris en charge</value></data>
+  <data name="Light_UnsupportedTitle" xml:space="preserve"><value>Éclairage non pris en charge sur ce PC</value></data>
+  <data name="Light_UnsupportedText1" xml:space="preserve"><value>Monolith Hub pilote le contrôleur d&apos;éclairage USB des HP OMEN Obelisk 875 (testé) et OMEN 30L (même contrôleur, 103C:84FD). Aucun contrôleur compatible n&apos;a été détecté sur ce PC.</value></data>
+  <data name="Light_UnsupportedText2" xml:space="preserve"><value>Le monitoring, les alertes et le reste de l&apos;application fonctionnent normalement. Si vous pensez que votre modèle devrait être compatible, ouvrez un ticket sur GitHub en joignant le journal (Paramètres → À propos).</value></data>
+  <data name="Light_BusyTitle" xml:space="preserve"><value>Contrôleur d&apos;éclairage occupé</value></data>
+  <data name="Light_BusyText" xml:space="preserve"><value>Une autre application l&apos;utilise, probablement l&apos;OMEN Gaming Hub. Fermez-la : Monolith Hub se reconnectera automatiquement.</value></data>
+  <data name="Profiles_SaveCurrent" xml:space="preserve"><value>Enregistrer le réglage actuel</value></data>
+  <data name="Profiles_Title" xml:space="preserve"><value>Profils</value></data>
+  <data name="Profiles_Hint" xml:space="preserve"><value>Un clic pour appliquer, Ctrl+Alt+1 à 9 depuis n&apos;importe où. Clic droit pour modifier ou supprimer.</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Common_Save" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="Profiles_NameHint" xml:space="preserve"><value>Nom du profil (ex. Streaming)</value></data>
+  <data name="Profile_NoShortcut" xml:space="preserve"><value>Sans raccourci</value></data>
+  <data name="Profile_Replace" xml:space="preserve"><value>Remplacer par le réglage actuel</value></data>
+  <data name="Profile_Delete" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="Profile_Game" xml:space="preserve"><value>Jeu</value></data>
+  <data name="Profile_Night" xml:space="preserve"><value>Nuit</value></data>
+  <data name="Profile_Rainbow" xml:space="preserve"><value>Arc-en-ciel</value></data>
+  <data name="Profile_Off" xml:space="preserve"><value>Éteint</value></data>
+  <data name="Toast_ProfileUpdated" xml:space="preserve"><value>Profil « {0} » mis à jour</value></data>
+  <data name="Toast_ProfileDeleted" xml:space="preserve"><value>Profil « {0} » supprimé</value></data>
+  <data name="Toast_ProfileApplied" xml:space="preserve"><value>Profil « {0} » appliqué</value></data>
+  <data name="Toast_ProfileSaved" xml:space="preserve"><value>Profil « {0} » enregistré</value></data>
+  <data name="Light_ClickZone" xml:space="preserve"><value>Cliquez sur une zone pour la régler</value></data>
+  <data name="Light_LogoFront" xml:space="preserve"><value>Logo (façade)</value></data>
+  <data name="Light_BarInside" xml:space="preserve"><value>Barre lumineuse (intérieur)</value></data>
+  <data name="Light_Both" xml:space="preserve"><value>Les deux</value></data>
+  <data name="Light_Logo" xml:space="preserve"><value>Logo</value></data>
+  <data name="Light_InnerBar" xml:space="preserve"><value>Barre intérieure</value></data>
+  <data name="Editor_BothTitle" xml:space="preserve"><value>Les deux zones</value></data>
+  <data name="Editor_BothDesc" xml:space="preserve"><value>Le logo et la barre lumineuse partagent les mêmes réglages.</value></data>
+  <data name="Editor_LogoTitle" xml:space="preserve"><value>Logo OMEN</value></data>
+  <data name="Editor_LogoDesc" xml:space="preserve"><value>Le losange lumineux en façade du boîtier.</value></data>
+  <data name="Editor_BarTitle" xml:space="preserve"><value>Barre lumineuse</value></data>
+  <data name="Editor_BarDesc" xml:space="preserve"><value>La barre en haut de la vitre latérale, qui éclaire l&apos;intérieur du PC.</value></data>
+  <data name="Toast_LightingOn" xml:space="preserve"><value>Éclairage allumé</value></data>
+  <data name="Toast_LightingOff" xml:space="preserve"><value>Éclairage éteint</value></data>
+  <data name="Zone_Effect" xml:space="preserve"><value>EFFET</value></data>
+  <data name="Mode_Static" xml:space="preserve"><value>Statique</value></data>
+  <data name="Mode_Breathing" xml:space="preserve"><value>Respiration</value></data>
+  <data name="Mode_Blinking" xml:space="preserve"><value>Clignotement</value></data>
+  <data name="Mode_Cycle" xml:space="preserve"><value>Cycle de couleurs</value></data>
+  <data name="Zone_Color" xml:space="preserve"><value>COULEUR</value></data>
+  <data name="Zone_CustomHue" xml:space="preserve"><value>Teinte personnalisée</value></data>
+  <data name="Zone_HexTip" xml:space="preserve"><value>Code couleur hexadécimal (Entrée pour valider)</value></data>
+  <data name="Zone_CycleHint" xml:space="preserve"><value>Le cycle fait défiler rouge, vert, bleu et violet.</value></data>
+  <data name="Zone_Brightness" xml:space="preserve"><value>LUMINOSITÉ</value></data>
+  <data name="Zone_Speed" xml:space="preserve"><value>VITESSE</value></data>
+  <data name="Speed_Slow" xml:space="preserve"><value>Lente</value></data>
+  <data name="Speed_Medium" xml:space="preserve"><value>Moyenne</value></data>
+  <data name="Speed_Fast" xml:space="preserve"><value>Rapide</value></data>
+  <data name="Reactive_Title" xml:space="preserve"><value>Couleur selon la température</value></data>
+  <data name="Reactive_Desc" xml:space="preserve"><value>L&apos;éclairage glisse de la couleur « froid » à la couleur « chaud » quand le PC chauffe. Remplace l&apos;effet choisi pour les zones concernées.</value></data>
+  <data name="Reactive_Source" xml:space="preserve"><value>TEMPÉRATURE SUIVIE</value></data>
+  <data name="Reactive_Hottest" xml:space="preserve"><value>Le plus chaud</value></data>
+  <data name="Reactive_Zones" xml:space="preserve"><value>ZONES</value></data>
+  <data name="Reactive_Cold" xml:space="preserve"><value>FROID - COULEUR EN DESSOUS DE</value></data>
+  <data name="Reactive_Hot" xml:space="preserve"><value>CHAUD - COULEUR AU-DESSUS DE</value></data>
+  <data name="Reactive_Now" xml:space="preserve"><value>Actuellement {0:0} °C ({1})</value></data>
+  <data name="Reactive_Waiting" xml:space="preserve"><value>En attente d&apos;une température…</value></data>
+  <data name="Src_Hottest" xml:space="preserve"><value>le plus chaud</value></data>
+  <data name="Src_Cpu" xml:space="preserve"><value>processeur</value></data>
+  <data name="Src_Gpu" xml:space="preserve"><value>carte graphique</value></data>
+  <data name="Toast_ReactiveOn" xml:space="preserve"><value>Couleur selon la température activée</value></data>
+  <data name="Toast_ReactiveOff" xml:space="preserve"><value>Couleur selon la température désactivée</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Langue</value></data>
+  <data name="Settings_LanguageDesc" xml:space="preserve"><value>Automatique suit la langue d&apos;affichage de Windows.</value></data>
+  <data name="Lang_Auto" xml:space="preserve"><value>Automatique</value></data>
+  <data name="Settings_StartupSection" xml:space="preserve"><value>Démarrage et arrière-plan</value></data>
+  <data name="Settings_StartWithWindows" xml:space="preserve"><value>Démarrer avec Windows</value></data>
+  <data name="Settings_StartWithWindowsDesc" xml:space="preserve"><value>Monolith Hub se lance discrètement près de l&apos;horloge et applique votre éclairage.</value></data>
+  <data name="Settings_CloseToTray" xml:space="preserve"><value>Rester actif en arrière-plan à la fermeture</value></data>
+  <data name="Settings_CloseToTrayDesc" xml:space="preserve"><value>La croix range Monolith Hub près de l&apos;horloge : l&apos;éclairage selon la température et les alertes continuent. Pour quitter : clic droit sur l&apos;icône → Quitter.</value></data>
+  <data name="Alerts_Title" xml:space="preserve"><value>Alertes de chauffe</value></data>
+  <data name="Alerts_Desc" xml:space="preserve"><value>Une notification Windows quand une température dépasse son seuil (une seule fois, jusqu&apos;à ce qu&apos;elle redescende de 5 °C).</value></data>
+  <data name="Alerts_CpuThreshold" xml:space="preserve"><value>SEUIL PROCESSEUR</value></data>
+  <data name="Alerts_GpuThreshold" xml:space="preserve"><value>SEUIL CARTE GRAPHIQUE</value></data>
+  <data name="Common_Test" xml:space="preserve"><value>Tester</value></data>
+  <data name="Alert_CpuTitle" xml:space="preserve"><value>Le processeur chauffe</value></data>
+  <data name="Alert_GpuTitle" xml:space="preserve"><value>La carte graphique chauffe</value></data>
+  <data name="Alert_Text" xml:space="preserve"><value>{0:0} °C, au-dessus du seuil de {1} °C.</value></data>
+  <data name="Alert_TestTitle" xml:space="preserve"><value>Test d&apos;alerte de chauffe</value></data>
+  <data name="Alert_TestText" xml:space="preserve"><value>Voilà à quoi ressemblera une alerte (seuils : CPU {0} °C, GPU {1} °C).</value></data>
+  <data name="Toast_AlertsOn" xml:space="preserve"><value>Alertes de chauffe activées</value></data>
+  <data name="Toast_AlertsOff" xml:space="preserve"><value>Alertes de chauffe désactivées</value></data>
+  <data name="Toast_StartupOn" xml:space="preserve"><value>Monolith Hub démarrera avec Windows</value></data>
+  <data name="Toast_StartupOff" xml:space="preserve"><value>Démarrage automatique désactivé</value></data>
+  <data name="Error_Schtasks" xml:space="preserve"><value>Impossible de modifier la tâche planifiée Windows.</value></data>
+  <data name="Hotkeys_Title" xml:space="preserve"><value>Raccourcis clavier</value></data>
+  <data name="Hotkey_Toggle" xml:space="preserve"><value>Allumer / éteindre l&apos;éclairage</value></data>
+  <data name="Hotkey_Profile" xml:space="preserve"><value>Profil « {0} »</value></data>
+  <data name="Hotkey_InUse" xml:space="preserve"><value> (déjà utilisé par une autre application)</value></data>
+  <data name="About_Tagline" xml:space="preserve"><value>Monitoring et éclairage pour PC HP OMEN. Logiciel libre sous licence MIT.</value></data>
+  <data name="About_GitHub" xml:space="preserve"><value>Page GitHub</value></data>
+  <data name="About_OpenLog" xml:space="preserve"><value>Ouvrir le journal</value></data>
+  <data name="About_Remove" xml:space="preserve"><value>Retirer Monolith Hub de Windows…</value></data>
+  <data name="About_Credits" xml:space="preserve"><value>CRÉDITS</value></data>
+  <data name="About_Credits1" xml:space="preserve"><value>Capteurs : LibreHardwareMonitor (MPL-2.0). Accès USB : HidSharp (Apache-2.0).</value></data>
+  <data name="About_Credits2" xml:space="preserve"><value>Protocole du contrôleur d&apos;éclairage documenté par le projet OpenRGB. Pilote CPU optionnel : PawnIO.</value></data>
+  <data name="About_Trademark" xml:space="preserve"><value>HP et OMEN sont des marques de HP Inc. Monolith Hub est un projet communautaire indépendant, non affilié à HP Inc., ni approuvé ou soutenu par HP Inc. Les noms de produits servent uniquement à indiquer la compatibilité.</value></data>
+  <data name="Cleanup_Title" xml:space="preserve"><value>Retirer Monolith Hub de Windows</value></data>
+  <data name="Cleanup_Confirm" xml:space="preserve"><value>Monolith Hub va retirer sa tâche de démarrage de Windows puis se fermer.
+
+Voulez-vous aussi supprimer vos réglages (profils, couleurs, seuils) ?
+
+Oui : tout supprimer      Non : garder les réglages      Annuler : ne rien faire</value></data>
+  <data name="Cleanup_Done" xml:space="preserve"><value>C&apos;est fait. Vous pouvez maintenant supprimer le dossier de Monolith Hub.</value></data>
+  <data name="System_CopyAll" xml:space="preserve"><value>Copier tout</value></data>
+  <data name="Toast_Copied" xml:space="preserve"><value>Informations copiées dans le presse-papiers</value></data>
+  <data name="Info_Computer" xml:space="preserve"><value>Ordinateur</value></data>
+  <data name="Info_Model" xml:space="preserve"><value>Modèle</value></data>
+  <data name="Info_Manufacturer" xml:space="preserve"><value>Fabricant</value></data>
+  <data name="Info_Serial" xml:space="preserve"><value>Numéro de série</value></data>
+  <data name="Info_Edition" xml:space="preserve"><value>Édition</value></data>
+  <data name="Info_Version" xml:space="preserve"><value>Version</value></data>
+  <data name="Info_DeviceName" xml:space="preserve"><value>Nom de l&apos;appareil</value></data>
+  <data name="Info_CoresThreads" xml:space="preserve"><value>Cœurs / threads</value></data>
+  <data name="Info_BaseClock" xml:space="preserve"><value>Fréquence de base</value></data>
+  <data name="Info_Driver" xml:space="preserve"><value>Pilote</value></data>
+  <data name="Info_Display" xml:space="preserve"><value>Affichage</value></data>
+  <data name="Info_DisplayValue" xml:space="preserve"><value>{0} × {1} à {2} Hz</value></data>
+  <data name="Info_Audio" xml:space="preserve"><value>Audio</value></data>
+  <data name="Tray_Open" xml:space="preserve"><value>Ouvrir Monolith Hub</value></data>
+  <data name="Tray_LightingOn" xml:space="preserve"><value>Éclairage allumé</value></data>
+  <data name="Tray_Quit" xml:space="preserve"><value>Quitter</value></data>
+  <data name="TrayHint_Title" xml:space="preserve"><value>Monolith Hub reste actif</value></data>
+  <data name="TrayHint_Text" xml:space="preserve"><value>L&apos;application continue près de l&apos;horloge. Clic droit sur l&apos;icône → Quitter pour la fermer.</value></data>
+  <data name="Error_Unexpected" xml:space="preserve"><value>Une erreur inattendue s&apos;est produite :
+{0}
+
+Monolith Hub continue de fonctionner. Les détails sont enregistrés dans le journal. Voulez-vous ouvrir le dossier du journal ?</value></data>
+</root>
