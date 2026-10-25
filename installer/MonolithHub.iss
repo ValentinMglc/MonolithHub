@@ -1,7 +1,3 @@
-; Installateur de Monolith Hub (Inno Setup 6).
-; Compilé par build.ps1, qui fournit AppVersion et SourceDir :
-;   ISCC.exe /DAppVersion=1.0.0 /DSourceDir=..\artifacts\app installer\MonolithHub.iss
-
 #ifndef AppVersion
   #define AppVersion "0.0.0"
 #endif
@@ -12,10 +8,9 @@
 #define AppName "Monolith Hub"
 #define AppExe "MonolithHub.exe"
 #define AppPublisher "ValentinMglc"
-#define AppUrl "https://github.com/ValentinMglc/monolith-hub"
+#define AppUrl "https://github.com/ValentinMglc/MonolithHub"
 
 [Setup]
-; Identifiant fixe : ne jamais le changer, il relie les mises à jour à l'installation existante.
 AppId={{5B8E2C1A-7F3D-4E9B-A6C2-9D41F0E7B3A5}
 AppName={#AppName}
 AppVersion={#AppVersion}
@@ -28,7 +23,6 @@ AppComments=Monitoring et éclairage pour PC HP OMEN. Non affilié à HP Inc.
 DefaultDirName={autopf}\{#AppName}
 DefaultGroupName={#AppName}
 DisableProgramGroupPage=yes
-; L'application elle-même demande les droits administrateur (capteurs, tâche de démarrage).
 PrivilegesRequired=admin
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
@@ -41,7 +35,6 @@ UninstallDisplayName={#AppName}
 Compression=lzma2/ultra64
 SolidCompression=yes
 WizardStyle=modern
-; Ferme Monolith Hub s'il tourne (mise à jour ou désinstallation).
 CloseApplications=force
 RestartApplications=no
 
@@ -70,15 +63,12 @@ Name: "{autoprograms}\{#AppName}"; Filename: "{app}\{#AppExe}"
 Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopicon
 
 [Run]
-; shellexec : l'application demande elle-même l'élévation via son manifeste.
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchApp}"; Flags: nowait postinstall skipifsilent shellexec
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
 
 [Code]
-// Avant de supprimer les fichiers : arrêter Monolith Hub puis retirer sa tâche de démarrage
-// (et, si l'utilisateur le souhaite, ses réglages dans %APPDATA%).
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
   ResultCode: Integer;

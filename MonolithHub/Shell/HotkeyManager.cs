@@ -3,7 +3,6 @@ using System.Windows.Interop;
 
 namespace MonolithHub.Shell;
 
-/// <summary>Raccourcis clavier globaux (actifs même quand la fenêtre est cachée).</summary>
 public sealed class HotkeyManager : IDisposable
 {
     const int WmHotkey = 0x0312;
@@ -19,7 +18,6 @@ public sealed class HotkeyManager : IDisposable
         _source.AddHook(WndProc);
     }
 
-    /// <summary>Enregistre Ctrl+Alt+<paramref name="key"/> ; renvoie faux si une autre application l'utilise déjà.</summary>
     public bool RegisterCtrlAlt(char key, Action action)
     {
         var id = _nextId++;

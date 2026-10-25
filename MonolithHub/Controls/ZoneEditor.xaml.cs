@@ -8,7 +8,6 @@ namespace MonolithHub.Controls;
 
 public partial class ZoneEditor : UserControl
 {
-    // Même palette que l'OMEN Gaming Hub.
     public static readonly string[] Palette =
     [
         "#FF0000", "#FF3B0F", "#FF7A00", "#FFAA00", "#FFD400", "#FFFF00", "#9DFF00", "#00FF2A", "#00FF95",
@@ -18,7 +17,6 @@ public partial class ZoneEditor : UserControl
     ZoneSettings _settings = new();
     bool _loading;
 
-    /// <summary>Déclenché à chaque modification faite par l'utilisateur.</summary>
     public event EventHandler? Changed;
 
     public ZoneEditor()
@@ -32,7 +30,6 @@ public partial class ZoneEditor : UserControl
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(hex)),
                 Tag = hex,
                 ToolTip = hex,
-                // Groupe propre à cet éditeur, sinon il interfère avec les autres sélecteurs de couleur.
                 GroupName = $"Swatches-{GetHashCode()}",
             };
             swatch.Click += (_, _) => SetColor(hex, updateHue: true);

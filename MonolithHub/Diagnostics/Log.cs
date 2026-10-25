@@ -2,9 +2,6 @@ using System.IO;
 
 namespace MonolithHub.Diagnostics;
 
-/// <summary>
-/// Journal texte dans %APPDATA%\MonolithHub\logs. Permet aux utilisateurs de joindre un fichier à un signalement de bug.
-/// </summary>
 public static class Log
 {
     const long MaxSize = 1024 * 1024;
@@ -28,16 +25,13 @@ public static class Log
             lock (Lock)
             {
                 Directory.CreateDirectory(Folder);
-                // Rotation simple : un seul fichier de sauvegarde, le journal ne dépasse jamais ~2 Mo.
                 if (File.Exists(FilePath) && new FileInfo(FilePath).Length > MaxSize)
                     File.Move(FilePath, FilePath + ".old", overwrite: true);
-                // UTF-8 avec BOM : les accents s'affichent correctement dans tous les éditeurs.
                 File.AppendAllText(FilePath, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {level} {message}{Environment.NewLine}", System.Text.Encoding.UTF8);
             }
         }
         catch (Exception)
         {
-            // Le journal ne doit jamais faire planter l'application.
         }
     }
 }

@@ -4,13 +4,11 @@ using System.Reflection;
 
 namespace MonolithHub;
 
-/// <summary>Informations sur l'application (version, liens) partagées par l'interface et le journal.</summary>
 public static class AppInfo
 {
-    /// <summary>Nom affiché à l'utilisateur ; l'exécutable, le code et les dossiers s'écrivent « MonolithHub », sans espace.</summary>
     public const string DisplayName = "Monolith Hub";
 
-    public const string RepositoryUrl = "https://github.com/ValentinMglc/monolith-hub";
+    public const string RepositoryUrl = "https://github.com/ValentinMglc/MonolithHub";
 
     public static string Version { get; } =
         Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+')[0]

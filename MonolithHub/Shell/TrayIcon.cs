@@ -4,7 +4,6 @@ using Forms = System.Windows.Forms;
 
 namespace MonolithHub.Shell;
 
-/// <summary>Icône de la zone de notification et son menu contextuel.</summary>
 public sealed class TrayIcon : IDisposable
 {
     public sealed record MenuState(bool LightingOn, bool ReactiveOn, IReadOnlyList<string> Profiles, string? ActiveProfile);
@@ -37,7 +36,6 @@ public sealed class TrayIcon : IDisposable
         };
     }
 
-    /// <summary>Texte affiché au survol (limité à 127 caractères par Windows).</summary>
     public void SetTooltip(string text) => _icon.Text = text.Length > 127 ? text[..127] : text;
 
     public void Notify(string title, string message, bool warning = false) =>
@@ -96,7 +94,6 @@ public sealed class TrayIcon : IDisposable
         _icon.Dispose();
     }
 
-    /// <summary>Thème sombre pour le menu contextuel, assorti à l'application.</summary>
     sealed class DarkColors : Forms.ProfessionalColorTable
     {
         public static readonly Drawing.Color Background = Drawing.Color.FromArgb(0x1A, 0x1B, 0x20);

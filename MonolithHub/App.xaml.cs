@@ -18,11 +18,9 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        // La langue doit être fixée avant de créer la moindre fenêtre ou le moindre réglage par défaut.
         Loc.Apply(AppSettings.Load().Language);
         RegisterErrorHandlers();
 
-        // Ancien mode sans interface (tâches planifiées créées par les premières versions).
         if (HasArg(e, "--apply-lighting"))
         {
             LightingService.ApplySaved(LightingSettings.Load());
@@ -30,7 +28,6 @@ public partial class App : Application
             return;
         }
 
-        // Appelé par un désinstalleur : retire la tâche de démarrage (et les réglages avec --purge).
         if (HasArg(e, "--uninstall"))
         {
             Cleanup.Run(removeSettings: HasArg(e, "--purge"));
@@ -38,7 +35,6 @@ public partial class App : Application
             return;
         }
 
-        // Une seule instance : relancer l'application affiche simplement la fenêtre existante.
         _instanceMutex = new Mutex(true, InstanceName, out var isFirst);
         _showEvent = new EventWaitHandle(false, EventResetMode.AutoReset, ShowEventName);
         if (!isFirst)
@@ -67,7 +63,6 @@ public partial class App : Application
 
     void RegisterErrorHandlers()
     {
-        // Erreur sur le thread de l'interface : on journalise et on continue plutôt que de fermer sans rien dire.
         DispatcherUnhandledException += (_, e) =>
         {
             Log.Error("Erreur non gérée (interface)", e.Exception);

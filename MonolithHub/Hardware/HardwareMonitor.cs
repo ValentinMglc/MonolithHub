@@ -6,9 +6,6 @@ using LibreHardwareMonitor.Hardware;
 
 namespace MonolithHub.Hardware;
 
-/// <summary>
-/// Collecte périodique des mesures. N'est appelé que depuis un seul thread (LibreHardwareMonitor n'est pas thread-safe).
-/// </summary>
 public sealed class HardwareMonitor : IDisposable
 {
     readonly Computer _computer = new()
@@ -33,7 +30,6 @@ public sealed class HardwareMonitor : IDisposable
 
     public void Open() => _computer.Open();
 
-    /// <param name="detailed">Faux quand la fenêtre est cachée : pas de processus, seulement l'essentiel.</param>
     public HardwareSnapshot Sample(bool detailed = true)
     {
         var sensors = new List<SensorReading>();
@@ -60,7 +56,6 @@ public sealed class HardwareMonitor : IDisposable
             _lastDriveSample = now;
         }
 
-        // La liste des processus est plus coûteuse : toutes les 2 secondes seulement.
         var processes = detailed && _tick++ % 2 == 0 ? SampleProcesses() : null;
 
         return new HardwareSnapshot
@@ -160,7 +155,6 @@ public sealed class HardwareMonitor : IDisposable
                 }
                 catch (Exception)
                 {
-                    // Processus protégé ou terminé entre-temps.
                 }
             }
         }

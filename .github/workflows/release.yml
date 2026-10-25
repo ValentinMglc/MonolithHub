@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Installer Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Lire la version depuis le tag
+        id: version
+        shell: pwsh
+        run: '"value=$("${{ github.ref_name }}".TrimStart("v"))" >> $env:GITHUB_OUTPUT'
+
+      - name: Construire l'installateur et la version portable
+        shell: pwsh
+        run: ./build.ps1 -Version ${{ steps.version.outputs.value }}
+
+      - name: Extraire les notes de version
+        shell: pwsh
+        run: ./tools/release-notes.ps1 -Version ${{ steps.version.outputs.value }} -OutFile artifacts/notes.md
+
+      - name: Publier la release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Monolith Hub ${{ steps.version.outputs.value }}
+          body_path: artifacts/notes.md
+          files: |
+            artifacts/Monolith-Hub-Setup-*.exe
+            artifacts/Monolith-Hub-*-portable.zip

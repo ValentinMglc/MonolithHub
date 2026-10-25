@@ -12,11 +12,6 @@ using MonolithHub.Shell;
 
 namespace MonolithHub;
 
-/// <summary>
-/// Fenêtre principale. Elle reste en vie quand on la ferme (rangée dans la zone de notification) :
-/// mesures, éclairage selon la température, alertes et raccourcis continuent en arrière-plan.
-/// Le code est réparti en fichiers partiels : Monitoring, Lighting, Settings.
-/// </summary>
 public partial class MainWindow : Window
 {
     readonly AppSettings _appSettings = AppSettings.Load();
@@ -33,7 +28,6 @@ public partial class MainWindow : Window
         IsVisibleChanged += (_, _) => UpdateUiVisibility();
     }
 
-    /// <summary>Démarre tout ce qui tourne en arrière-plan, que la fenêtre soit affichée ou non.</summary>
     public void Initialize()
     {
         foreach (var page in Pages)
@@ -101,7 +95,6 @@ public partial class MainWindow : Window
         _previewTimer.Stop();
         try
         {
-            // Le mode « direct » de l'éclairage réactif n'est pas mémorisé : on remet l'effet enregistré.
             if (_lighting is not null && _lightingSettings.Reactive.Enabled)
                 LightingService.ApplyAll(_lighting, _lightingSettings);
         }
@@ -122,17 +115,14 @@ public partial class MainWindow : Window
             _previewTimer.Start();
         else
             _previewTimer.Stop();
-        // Au retour, on affiche tout de suite la dernière mesure plutôt que d'attendre la suivante.
         if (_uiVisible && _lastSnapshot is not null)
             RenderUi(_lastSnapshot);
     }
 
-    // ───────────────────────── Navigation ─────────────────────────
-
     void OnNavigate(object sender, RoutedEventArgs e)
     {
         if (DashboardPage is null)
-            return; // Événement déclenché pendant InitializeComponent.
+            return;
         var target = (string)((RadioButton)sender).CommandParameter;
         foreach (var page in Pages)
         {
@@ -164,12 +154,9 @@ public partial class MainWindow : Window
         Toast.BeginAnimation(OpacityProperty, animation);
     }
 
-    // ───────────────────────── Fenêtre ─────────────────────────
-
     void OnWindowStateChanged()
     {
         UpdateUiVisibility();
-        // Une fenêtre sans bordure agrandie déborde de l'écran : on compense.
         Root.Padding = WindowState == WindowState.Maximized ? new Thickness(7) : new Thickness(0);
         MaximizeGlyph.Text = WindowState == WindowState.Maximized ? "" : "";
         MaximizeButton.ToolTip = Loc.T(WindowState == WindowState.Maximized ? "Caption_Restore" : "Caption_Maximize");
@@ -195,9 +182,9 @@ public partial class MainWindow : Window
     {
         var hwnd = new WindowInteropHelper(this).Handle;
         var dark = 1;
-        DwmSetWindowAttribute(hwnd, 20 /* DWMWA_USE_IMMERSIVE_DARK_MODE */, ref dark, sizeof(int));
+        DwmSetWindowAttribute(hwnd, 20 , ref dark, sizeof(int));
         var round = 2;
-        DwmSetWindowAttribute(hwnd, 33 /* DWMWA_WINDOW_CORNER_PREFERENCE = arrondi */, ref round, sizeof(int));
+        DwmSetWindowAttribute(hwnd, 33 , ref round, sizeof(int));
     }
 
     [DllImport("dwmapi.dll")]

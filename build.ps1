@@ -1,15 +1,4 @@
-﻿<#
-.SYNOPSIS
-    Compile Monolith Hub et produit les fichiers d'une release dans .\artifacts :
-      - Monolith-Hub-Setup-<version>.exe   installateur (runtime .NET inclus)
-      - Monolith-Hub-<version>-portable.zip version portable (runtime .NET inclus)
-
-.EXAMPLE
-    .\build.ps1
-    .\build.ps1 -Version 1.1.0
-#>
-param(
-    # Par défaut, la version déclarée dans MonolithHub.csproj.
+﻿param(
     [string]$Version
 )
 
@@ -26,8 +15,6 @@ Write-Host "Monolith Hub $Version" -ForegroundColor Magenta
 
 if (Test-Path $artifacts) { Remove-Item -Recurse -Force $artifacts }
 
-# Publication autonome : l'utilisateur n'a pas besoin d'installer .NET.
-# (Pas de « single file » : le Contrôle intelligent des applications de Windows bloque ce format non signé.)
 dotnet publish $project -c Release -r win-x64 --self-contained true -o $appDir -p:Version=$Version
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish a échoué" }
 Get-ChildItem $appDir -Filter *.pdb | Remove-Item

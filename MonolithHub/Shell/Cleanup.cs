@@ -4,7 +4,6 @@ using MonolithHub.Lighting;
 
 namespace MonolithHub.Shell;
 
-/// <summary>Retire de Windows ce que Monolith Hub y a installé (tâche de démarrage, réglages).</summary>
 public static class Cleanup
 {
     public static void Run(bool removeSettings)
@@ -23,7 +22,6 @@ public static class Cleanup
             }
             catch (Exception)
             {
-                // Fichier encore ouvert (journal) : sans gravité, il ne reste qu'un petit dossier.
             }
         }
     }

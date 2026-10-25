@@ -6,11 +6,6 @@ using System.Windows.Markup;
 
 namespace MonolithHub.Localization;
 
-/// <summary>
-/// Textes de l'interface, lus dans Resources/Strings*.resx (anglais par défaut, français dans Strings.fr.resx).
-/// La langue peut changer à chaud : les liaisons XAML ({l:T Clé}) se mettent à jour, et le code
-/// s'abonne à <see cref="LanguageChanged"/> pour ses propres textes.
-/// </summary>
 public sealed class Loc : INotifyPropertyChanged
 {
     public const string Automatic = "auto";
@@ -33,7 +28,6 @@ public sealed class Loc : INotifyPropertyChanged
 
     public static string F(string key, params object?[] args) => string.Format(Culture, T(key), args);
 
-    /// <param name="setting">« auto » (langue de Windows), « fr » ou « en ».</param>
     public static void Apply(string? setting)
     {
         var culture = Resolve(setting);
@@ -44,7 +38,6 @@ public sealed class Loc : INotifyPropertyChanged
         LanguageChanged?.Invoke();
     }
 
-    // Français si demandé ou si Windows est en français ; anglais sinon (langue neutre des ressources).
     static CultureInfo Resolve(string? setting) => setting switch
     {
         "fr" => CultureInfo.GetCultureInfo("fr-FR"),
@@ -55,7 +48,6 @@ public sealed class Loc : INotifyPropertyChanged
     };
 }
 
-/// <summary>Usage en XAML : <c>Text="{l:T Nav_Dashboard}"</c>.</summary>
 [MarkupExtensionReturnType(typeof(object))]
 public sealed class TExtension(string key) : MarkupExtension
 {

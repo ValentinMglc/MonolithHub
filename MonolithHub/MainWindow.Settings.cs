@@ -27,7 +27,6 @@ public partial class MainWindow
         UpdateAlertTexts();
         VersionRun.Text = AppInfo.Version;
 
-        // schtasks prend ~100 ms : hors du thread UI. Une ancienne tâche est mise à jour vers le mode « zone de notification ».
         Task.Run(() =>
             {
                 if (LightingService.MigrateLegacyStartupTask())
@@ -40,8 +39,6 @@ public partial class MainWindow
             .ContinueWith(t => StartupCheck.IsChecked = t.Result, TaskScheduler.FromCurrentSynchronizationContext());
     }
 
-    // ───────────────────────── Langue ─────────────────────────
-
     void OnLanguageChecked(object sender, RoutedEventArgs e)
     {
         if (!IsInitialized || _loadingSettings)
@@ -51,9 +48,6 @@ public partial class MainWindow
         Loc.Apply(_appSettings.Language);
     }
 
-    /// <summary>
-    /// Les textes du XAML suivent seuls ({l:T}) ; ici, tout ce que le code a écrit lui-même est régénéré.
-    /// </summary>
     void OnLanguageChanged()
     {
         UpdateMasterSwitch();
@@ -68,7 +62,6 @@ public partial class MainWindow
         if (driver != DriverState.Unknown)
             UpdateDriverState(driver == DriverState.Ok);
 
-        // Capteurs et disques : noms et unités dépendent de la langue.
         _sensorRows.Clear();
         _sensorGroups = [];
         DrivesList.Items.Refresh();
@@ -76,8 +69,6 @@ public partial class MainWindow
             RenderUi(_lastSnapshot);
         _ = LoadSystemInfoAsync();
     }
-
-    // ───────────────────────── Démarrage et arrière-plan ─────────────────────────
 
     async void OnStartupClick(object sender, RoutedEventArgs e)
     {
@@ -99,8 +90,6 @@ public partial class MainWindow
         _appSettings.Save();
     }
 
-    // ───────────────────────── Alertes de chauffe ─────────────────────────
-
     void OnHeatAlertsClick(object sender, RoutedEventArgs e)
     {
         _appSettings.HeatAlertsEnabled = HeatAlertsCheck.IsChecked == true;
@@ -111,7 +100,6 @@ public partial class MainWindow
 
     void OnThresholdChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        // Pendant InitializeComponent, le Minimum du curseur déclenche cet événement : on l'ignore.
         if (!IsInitialized || _loadingSettings)
             return;
         _appSettings.CpuAlertThreshold = (int)CpuThresholdSlider.Value;
@@ -131,8 +119,6 @@ public partial class MainWindow
     void OnTestAlertClick(object sender, RoutedEventArgs e) =>
         _tray?.Notify(Loc.T("Alert_TestTitle"), Loc.F("Alert_TestText", _appSettings.CpuAlertThreshold, _appSettings.GpuAlertThreshold), warning: true);
 
-    // ───────────────────────── À propos ─────────────────────────
-
     void OnOpenRepository(object sender, RoutedEventArgs e) => AppInfo.OpenUrl(AppInfo.RepositoryUrl);
 
     void OnOpenLogs(object sender, RoutedEventArgs e) => AppInfo.OpenFolder(Log.Folder);
@@ -148,8 +134,6 @@ public partial class MainWindow
             MessageBoxButton.OK, MessageBoxImage.Information);
         Quit();
     }
-
-    // ───────────────────────── Raccourcis clavier ─────────────────────────
 
     void RegisterHotkeys()
     {
@@ -182,13 +166,10 @@ public partial class MainWindow
         HotkeyList.ItemsSource = rows;
     }
 
-    // ───────────────────────── Système ─────────────────────────
-
     async Task LoadSystemInfoAsync()
     {
         _systemInfo = await Task.Run(SystemInfo.Read);
 
-        // Répartition en deux colonnes équilibrées par nombre de lignes.
         List<InfoSection> left = [], right = [];
         int leftRows = 0, rightRows = 0;
         foreach (var section in _systemInfo)

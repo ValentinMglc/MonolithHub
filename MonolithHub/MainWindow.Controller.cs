@@ -8,10 +8,6 @@ using MonolithHub.Lighting;
 
 namespace MonolithHub;
 
-/// <summary>
-/// Connexion au contrôleur d'éclairage : détection, reconnexion automatique (USB débranché, autre application
-/// qui le libère) et remise de l'éclairage après une mise en veille.
-/// </summary>
 public partial class MainWindow
 {
     enum ControllerState { Connected, Busy, NotPresent }
@@ -26,7 +22,6 @@ public partial class MainWindow
             _reconnectTimer.Stop();
             TryConnect();
         };
-        // Les événements USB arrivent en rafale : on regroupe via le minuteur de reconnexion.
         DeviceList.Local.Changed += OnUsbDevicesChanged;
         SystemEvents.PowerModeChanged += OnPowerModeChanged;
         TryConnect();
@@ -44,7 +39,6 @@ public partial class MainWindow
         {
             if (_quitting)
                 return;
-            // Contrôleur débranché : on lâche le handle ; nouveau périphérique : on retente si on n'est pas connecté.
             if (_lighting is not null && !OmenLightingDevice.IsPresent())
                 Disconnect("contrôleur débranché");
             if (_lighting is null)
@@ -55,7 +49,6 @@ public partial class MainWindow
     {
         if (e.Mode != PowerModes.Resume)
             return;
-        // Au réveil, le contrôleur USB peut avoir été réinitialisé : on rouvre et on renvoie tout.
         Dispatcher.BeginInvoke(() =>
         {
             Log.Info("Sortie de veille : reconnexion du contrôleur d'éclairage");
@@ -108,7 +101,6 @@ public partial class MainWindow
         _lighting = null;
     }
 
-    /// <summary>Échec d'envoi : le handle n'est sans doute plus valide, on se reconnectera.</summary>
     void OnControllerError(Exception ex)
     {
         Log.Warn("Envoi au contrôleur d'éclairage impossible", ex);
@@ -136,7 +128,6 @@ public partial class MainWindow
             _ => Loc.T("Dot_Unsupported"),
         };
 
-        // PC sans contrôleur compatible : on explique au lieu d'afficher des réglages qui ne font rien.
         UnsupportedCard.Visibility = state == ControllerState.NotPresent ? Visibility.Visible : Visibility.Collapsed;
         LightingControls.Visibility = state == ControllerState.NotPresent ? Visibility.Collapsed : Visibility.Visible;
         BusyCard.Visibility = state == ControllerState.Busy ? Visibility.Visible : Visibility.Collapsed;

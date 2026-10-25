@@ -18,7 +18,6 @@ public enum LightingSpeed : byte
     Fast = 0x03,
 }
 
-/// <summary>Zones exposées par le contrôleur d'un OMEN Obelisk 875 (même carte que l'OMEN 30L).</summary>
 public enum LightingZone : byte
 {
     Logo = 0x01,
@@ -27,10 +26,6 @@ public enum LightingZone : byte
 
 public readonly record struct Rgb(byte R, byte G, byte B);
 
-/// <summary>
-/// Pilote du contrôleur USB HID « TracerLED » (VID 0x103C / PID 0x84FD).
-/// Le format des trames provient de la rétro-ingénierie du projet OpenRGB (pilote HP Omen 30L).
-/// </summary>
 public sealed class OmenLightingDevice : IDisposable
 {
     public const int VendorId = 0x103C;
@@ -50,7 +45,6 @@ public sealed class OmenLightingDevice : IDisposable
 
     OmenLightingDevice(HidStream stream) => _stream = stream;
 
-    /// <summary>Vrai si le contrôleur est branché, même s'il est occupé par une autre application.</summary>
     public static bool IsPresent() => FindDevice() is not null;
 
     static HidDevice? FindDevice() =>
@@ -65,8 +59,6 @@ public sealed class OmenLightingDevice : IDisposable
         return new OmenLightingDevice(stream);
     }
 
-    /// <param name="brightness">0 à 100.</param>
-    /// <param name="colors">Une couleur pour statique / respiration / clignotement, plusieurs pour le cycle.</param>
     public void SetZone(LightingZone zone, LightingMode mode, IReadOnlyList<Rgb> colors, byte brightness, LightingSpeed speed)
     {
         lock (_lock)
@@ -94,7 +86,6 @@ public sealed class OmenLightingDevice : IDisposable
                 return;
             }
 
-            // Modes animés : une trame par couleur, indexées à partir de 1.
             for (var i = 0; i < colors.Count; i++)
             {
                 var report = CreateReport(zone, mode);
@@ -110,10 +101,6 @@ public sealed class OmenLightingDevice : IDisposable
         }
     }
 
-    /// <summary>
-    /// Mode « direct » : couleur fixe pensée pour être rafraîchie souvent (effets pilotés par logiciel),
-    /// contrairement au mode statique qui est mémorisé par le contrôleur.
-    /// </summary>
     public void SetDirect(LightingZone zone, Rgb color, byte brightness)
     {
         lock (_lock)
@@ -134,7 +121,6 @@ public sealed class OmenLightingDevice : IDisposable
 
     static byte[] CreateReport(LightingZone zone, LightingMode mode)
     {
-        // L'octet 0 est l'identifiant de rapport HID (0).
         var report = new byte[ReportLength];
         report[0x02] = VersionId;
         report[0x03] = (byte)mode;

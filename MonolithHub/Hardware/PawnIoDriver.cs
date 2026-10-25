@@ -3,7 +3,6 @@ using Microsoft.Win32;
 
 namespace MonolithHub.Hardware;
 
-/// <summary>Pilote noyau PawnIO, nécessaire pour lire température, fréquence et puissance du CPU.</summary>
 public static class PawnIoDriver
 {
     public const string Website = "https://pawnio.eu";
@@ -15,7 +14,6 @@ public static class PawnIoDriver
         return key is not null;
     }
 
-    /// <summary>Installe PawnIO via winget (l'application tourne déjà en administrateur).</summary>
     public static async Task<bool> InstallAsync()
     {
         try
@@ -28,7 +26,6 @@ public static class PawnIoDriver
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
             })!;
-            // Lire les sorties évite un blocage si le tampon se remplit.
             var stdout = process.StandardOutput.ReadToEndAsync();
             var stderr = process.StandardError.ReadToEndAsync();
             await process.WaitForExitAsync();
@@ -36,7 +33,6 @@ public static class PawnIoDriver
         }
         catch (Exception)
         {
-            // winget absent ou bloqué : on vérifie quand même l'état ci-dessous.
         }
         return IsInstalled();
     }

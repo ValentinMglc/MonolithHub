@@ -22,7 +22,6 @@ public sealed class SensorRow(string name) : Observable
     bool _isVisible = true;
 
     public string Name { get; } = name;
-    /// <summary>Faux pour les capteurs qui ne remontent rien (ex. températures CPU sans pilote) : ils sont masqués.</summary>
     public bool HasValue { get; set; }
     public string Value { get => _value; set => Set(ref _value, value); }
     public string Min { get => _min; set => Set(ref _min, value); }

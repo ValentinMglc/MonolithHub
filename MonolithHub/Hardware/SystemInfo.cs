@@ -6,7 +6,6 @@ public sealed record InfoRow(string Label, string Value);
 
 public sealed record InfoSection(string Title, string Glyph, IReadOnlyList<InfoRow> Rows);
 
-/// <summary>Informations statiques lues via WMI (relues à chaque changement de langue).</summary>
 public static class SystemInfo
 {
     public static IReadOnlyList<InfoSection> Read()
@@ -81,7 +80,6 @@ public static class SystemInfo
         catch (ManagementException) { return "-"; }
     }
 
-    // Disques en Go décimaux (comme les fabricants), barrettes mémoire en Gio.
     static string ToGb(object? bytes, double unit = 1e9) =>
         bytes is null ? "?" : Math.Round(Convert.ToDouble(bytes) / unit).ToString("0");
 }

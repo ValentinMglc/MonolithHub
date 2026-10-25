@@ -5,7 +5,6 @@ namespace MonolithHub.Lighting;
 
 public static class LightingService
 {
-    /// <summary>Couleurs utilisées par le mode « Cycle de couleurs ».</summary>
     public static readonly IReadOnlyList<Rgb> CycleColors =
     [
         new(0xFF, 0x00, 0x00),
@@ -15,19 +14,15 @@ public static class LightingService
     ];
 
     const string TaskName = "MonolithHub";
-    /// <summary>Nom de la tâche créée par les versions « OMEN Lite ».</summary>
-    /// <summary>Tâches créées par les versions précédentes (« Monolith », « OMEN Lite »).</summary>
     static readonly string[] LegacyTaskNames = ["Monolith", "OmenLite - Eclairage"];
 
     static readonly ZoneSettings OffSettings = new() { Mode = LightingMode.Off };
 
-    /// <summary>Réglage enregistré d'une zone (tient compte de l'interrupteur et de la synchro).</summary>
     public static ZoneSettings Effective(LightingSettings settings, LightingZone zone) =>
         !settings.Enabled ? OffSettings
         : zone == LightingZone.Logo || settings.SyncZones ? settings.Logo
         : settings.LightBar;
 
-    /// <summary>Vrai si la zone est actuellement pilotée par la température.</summary>
     public static bool IsReactive(LightingSettings settings, LightingZone zone) =>
         settings.Enabled && settings.Reactive.Enabled && settings.Reactive.Covers(zone);
 
@@ -37,7 +32,6 @@ public static class LightingService
         device.SetZone(zone, settings.Mode, colors, settings.Brightness, settings.Speed);
     }
 
-    /// <param name="reactiveColor">Couleur calculée depuis la température ; null = ignorer l'option.</param>
     public static void ApplyAll(OmenLightingDevice device, LightingSettings settings, Rgb? reactiveColor = null)
     {
         foreach (var zone in new[] { LightingZone.Logo, LightingZone.LightBar })
@@ -59,7 +53,6 @@ public static class LightingService
         return true;
     }
 
-    /// <summary>Température utilisée par l'éclairage réactif, selon la source choisie.</summary>
     public static float? SourceTemperature(ReactiveSettings reactive, float? cpu, float? gpu)
     {
         cpu = cpu is > 0 ? cpu : null;
@@ -72,7 +65,6 @@ public static class LightingService
         };
     }
 
-    /// <summary>Dégradé linéaire entre la couleur « froid » et la couleur « chaud ».</summary>
     public static Rgb ReactiveColor(ReactiveSettings reactive, float temperature)
     {
         var span = Math.Max(1, reactive.HotTemperature - reactive.ColdTemperature);
@@ -95,8 +87,6 @@ public static class LightingService
 
     public static string ToHex(Rgb c) => $"#{c.R:X2}{c.G:X2}{c.B:X2}";
 
-    // L'application demande les droits administrateur : une entrée « Run » du registre serait bloquée par l'UAC,
-    // d'où une tâche planifiée à l'ouverture de session avec privilèges élevés.
     public static bool IsStartupTaskInstalled() => RunSchtasks($"/Query /TN \"{TaskName}\"") == 0;
 
     public static void RemoveStartupTasks()
@@ -105,7 +95,6 @@ public static class LightingService
             RunSchtasks($"/Delete /TN \"{name}\" /F");
     }
 
-    /// <summary>Remplace une tâche des versions précédentes par celle de Monolith Hub ; renvoie vrai si une migration a eu lieu.</summary>
     public static bool MigrateLegacyStartupTask()
     {
         var found = false;
@@ -117,7 +106,6 @@ public static class LightingService
         return found && SetStartupTask(true);
     }
 
-    /// <summary>Au démarrage de Windows, Monolith Hub se lance réduit dans la zone de notification.</summary>
     public static bool SetStartupTask(bool enabled)
     {
         if (!enabled)

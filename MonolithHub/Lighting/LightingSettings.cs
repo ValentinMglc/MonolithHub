@@ -31,7 +31,6 @@ public enum TemperatureSource { Hottest, Cpu, Gpu }
 
 public enum ReactiveZones { Logo, LightBar, Both }
 
-/// <summary>Couleur pilotée par la température (dégradé froid → chaud).</summary>
 public sealed class ReactiveSettings
 {
     public bool Enabled { get; set; }
@@ -46,7 +45,6 @@ public sealed class ReactiveSettings
         Zones == ReactiveZones.Both || (zone == LightingZone.Logo ? Zones == ReactiveZones.Logo : Zones == ReactiveZones.LightBar);
 }
 
-/// <summary>Réglage d'éclairage enregistré sous un nom.</summary>
 public sealed class LightingProfile
 {
     public string Name { get; set; } = "";
@@ -76,14 +74,12 @@ public sealed class LightingProfile
 
 public sealed class LightingSettings
 {
-    /// <summary>Interrupteur général : faux = tout éteint, sans perdre les réglages des zones.</summary>
     public bool Enabled { get; set; } = true;
     public ZoneSettings Logo { get; set; } = new();
     public ZoneSettings LightBar { get; set; } = new();
     public bool SyncZones { get; set; } = true;
     public ReactiveSettings Reactive { get; set; } = new();
     public List<LightingProfile> Profiles { get; set; } = DefaultProfiles();
-    /// <summary>Profil appliqué en dernier, tant qu'aucun réglage n'a été modifié à la main.</summary>
     public string? ActiveProfile { get; set; }
 
     static List<LightingProfile> DefaultProfiles() =>
@@ -108,10 +104,8 @@ public sealed class LightingSettings
     public void Save() => JsonStore.Save("lighting.json", this);
 }
 
-/// <summary>Réglages généraux de l'application.</summary>
 public sealed class AppSettings
 {
-    /// <summary>« auto » (langue de Windows), « fr » ou « en ».</summary>
     public string Language { get; set; } = Loc.Automatic;
     public bool CloseToTray { get; set; } = true;
     public bool TrayHintShown { get; set; }
@@ -128,14 +122,12 @@ static class JsonStore
     static readonly string Folder = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MonolithHub");
 
-    /// <summary>Dossiers des versions précédentes (« Monolith », puis « OMEN Lite »), repris une seule fois.</summary>
     static readonly string[] LegacyFolders = ["Monolith", "OmenLite"];
 
     static JsonStore()
     {
         try
         {
-            // Le journal peut avoir déjà créé le dossier : on regarde s'il contient des réglages.
             if (Directory.Exists(Folder) && Directory.GetFiles(Folder, "*.json").Length > 0)
                 return;
             var legacy = LegacyFolders
@@ -149,7 +141,6 @@ static class JsonStore
         }
         catch (Exception)
         {
-            // Migration impossible : on démarre simplement avec les réglages par défaut.
         }
     }
 
@@ -169,7 +160,6 @@ static class JsonStore
         }
         catch (Exception)
         {
-            // Fichier corrompu ou ancien format : on repart des valeurs par défaut.
         }
         return new();
     }

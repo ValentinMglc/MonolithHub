@@ -3,7 +3,6 @@ using System.Windows.Media;
 
 namespace MonolithHub.Controls;
 
-/// <summary>Mini-graphique d'historique : courbe + remplissage dégradé, aligné à droite.</summary>
 public sealed class Sparkline : FrameworkElement
 {
     public static readonly DependencyProperty StrokeProperty = DependencyProperty.Register(
@@ -24,9 +23,7 @@ public sealed class Sparkline : FrameworkElement
 
     public Brush Stroke { get => (Brush)GetValue(StrokeProperty); set => SetValue(StrokeProperty, value); }
     public Brush? Fill { get => (Brush?)GetValue(FillProperty); set => SetValue(FillProperty, value); }
-    /// <summary>Valeur du haut du graphique ; 0 = échelle automatique.</summary>
     public double Maximum { get => (double)GetValue(MaximumProperty); set => SetValue(MaximumProperty, value); }
-    /// <summary>Nombre de points visibles sur toute la largeur.</summary>
     public int Capacity { get => (int)GetValue(CapacityProperty); set => SetValue(CapacityProperty, value); }
 
     IReadOnlyList<double> _values = [];
@@ -39,7 +36,6 @@ public sealed class Sparkline : FrameworkElement
 
     protected override void OnRender(DrawingContext dc)
     {
-        // Zone transparente pour que l'élément garde sa taille même vide.
         dc.DrawRectangle(Brushes.Transparent, null, new Rect(0, 0, ActualWidth, ActualHeight));
         if (_values.Count < 2 || ActualWidth <= 0 || ActualHeight <= 0)
             return;
@@ -79,7 +75,6 @@ public sealed class Sparkline : FrameworkElement
     }
 }
 
-/// <summary>Historique glissant de mesures.</summary>
 public sealed class History(int capacity = 60)
 {
     readonly List<double> _values = new(capacity);

@@ -27,8 +27,6 @@ public partial class MainWindow
     DriverState _driverState = DriverState.Unknown;
     bool _installingDriver;
 
-    // ───────────────────────── Boucle de mesure ─────────────────────────
-
     void StartMonitor()
     {
         _monitorCts = new CancellationTokenSource();
@@ -38,7 +36,6 @@ public partial class MainWindow
 
     void StopMonitor() => _monitorCts?.Cancel();
 
-    /// <summary>Recrée les capteurs (utile après l'installation de PawnIO).</summary>
     async Task RestartMonitorAsync()
     {
         _monitorCts?.Cancel();
@@ -57,7 +54,6 @@ public partial class MainWindow
         {
             do
             {
-                // Fenêtre cachée : une mesure toutes les 2 s, sans la liste des processus.
                 var visible = _uiVisible;
                 if (!visible && hiddenTicks++ % 2 == 1)
                     continue;
@@ -102,8 +98,6 @@ public partial class MainWindow
             _tray?.Notify(Loc.T("Alert_GpuTitle"), Loc.F("Alert_Text", s.GpuTemp, _appSettings.GpuAlertThreshold), warning: true);
     }
 
-    // ───────────────────────── Affichage ─────────────────────────
-
     void RenderUi(HardwareSnapshot s)
     {
         LiveText.Text = Loc.T("Dash_Live");
@@ -134,7 +128,6 @@ public partial class MainWindow
 
         SetRate(DownText, DownUnit, s.DownloadMbps);
         SetRate(UpText, UpUnit, s.UploadMbps);
-        // Échelle commune aux deux courbes pour pouvoir les comparer.
         var netMax = Math.Max(1, Math.Max(_downHistory.Values.Max(), _upHistory.Values.Max())) * 1.2;
         DownSpark.Maximum = UpSpark.Maximum = netMax;
         DownSpark.SetValues(_downHistory.Values);
@@ -188,8 +181,6 @@ public partial class MainWindow
     static string Percent(float? value) => value is null ? "-" : $"{value:0}%";
     static string Temperature(float? value) => value is > 0 ? $"{value:0} °C" : "-";
     static string JoinInline(params string?[] parts) => string.Join(" · ", parts.Where(p => !string.IsNullOrEmpty(p)));
-
-    // ───────────────────────── Pilote PawnIO ─────────────────────────
 
     void UpdateDriverState(bool lowLevelAccess)
     {
@@ -247,8 +238,6 @@ public partial class MainWindow
         _driverState = DriverState.Unknown;
         await RestartMonitorAsync();
     }
-
-    // ───────────────────────── Capteurs ─────────────────────────
 
     static readonly string[] SectionOrder =
         ["Temperature", "Load", "Clock", "Power", "Fan", "Control", "Voltage", "Current", "Data", "SmallData", "Throughput", "Energy"];
@@ -314,7 +303,6 @@ public partial class MainWindow
             : Visibility.Collapsed;
     }
 
-    /// <summary>LibreHardwareMonitor nomme ses capteurs en anglais : on traduit les plus courants en français.</summary>
     static string TranslateSensorName(string name) => !Loc.IsFrench ? name : name
         .Replace("Distance to TjMax", "marge avant TjMax")
         .Replace("Core Average", "Moyenne des cœurs")

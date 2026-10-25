@@ -15,7 +15,6 @@ namespace MonolithHub;
 public partial class MainWindow
 {
     static readonly Color DarkLed = Color.FromRgb(0x2A, 0x2B, 0x31);
-    /// <summary>Le mode direct est renvoyé régulièrement, au cas où le contrôleur reviendrait à son effet mémorisé.</summary>
     static readonly TimeSpan ReactiveRefresh = TimeSpan.FromSeconds(5);
 
     readonly LightingSettings _lightingSettings = LightingSettings.Load();
@@ -48,11 +47,9 @@ public partial class MainWindow
         ReloadLightingUi();
         RefreshProfiles();
         UpdatePreview();
-        // Se connecte et remet l'éclairage enregistré (notamment au démarrage de Windows).
         InitController();
     }
 
-    /// <summary>Recharge tous les contrôles depuis les réglages (après un profil, le menu de notification…).</summary>
     void ReloadLightingUi()
     {
         _loadingLighting = true;
@@ -80,9 +77,6 @@ public partial class MainWindow
             radio.IsChecked = (string)radio.Tag == tag;
     }
 
-    // ───────────────────────── Application au contrôleur ─────────────────────────
-
-    /// <summary>Toute modification faite à la main fait sortir du profil actif.</summary>
     void OnManualLightingChange()
     {
         if (_lightingSettings.ActiveProfile is not null)
@@ -99,7 +93,6 @@ public partial class MainWindow
         _lightingDebounce.Start();
     }
 
-    /// <summary>Enregistre et envoie tous les réglages au contrôleur.</summary>
     void ApplyLighting()
     {
         try
@@ -118,8 +111,6 @@ public partial class MainWindow
             OnControllerError(ex);
         }
     }
-
-    // ───────────────────────── Interrupteur et zones ─────────────────────────
 
     void OnMasterSwitchClick(object sender, RoutedEventArgs e) => SetLightingEnabled(MasterSwitch.IsChecked == true);
 
@@ -156,7 +147,6 @@ public partial class MainWindow
         }
         else if (_lightingSettings.SyncZones)
         {
-            // On part du réglage commun : rien ne change visuellement en séparant les zones.
             _lightingSettings.LightBar.CopyFrom(_lightingSettings.Logo);
             _lightingSettings.SyncZones = false;
         }
@@ -180,8 +170,6 @@ public partial class MainWindow
 
     void OnLogoZoneClick(object sender, MouseButtonEventArgs e) => TargetLogo.IsChecked = true;
     void OnBarZoneClick(object sender, MouseButtonEventArgs e) => TargetBar.IsChecked = true;
-
-    // ───────────────────────── Profils ─────────────────────────
 
     void RefreshProfiles()
     {
@@ -309,8 +297,6 @@ public partial class MainWindow
         ShowToast(Loc.F("Toast_ProfileSaved", name));
     }
 
-    // ───────────────────────── Couleur selon la température ─────────────────────────
-
     bool ReactiveActive => _lightingSettings.Enabled && _lightingSettings.Reactive.Enabled;
 
     void RecomputeReactiveColor()
@@ -321,7 +307,6 @@ public partial class MainWindow
         _reactiveColor = _reactiveTemperature is { } t ? LightingService.ReactiveColor(_lightingSettings.Reactive, t) : null;
     }
 
-    /// <summary>Appelé à chaque mesure : n'envoie au contrôleur que si la couleur a vraiment changé.</summary>
     void UpdateReactive(HardwareSnapshot s)
     {
         var previous = _reactiveColor;
@@ -374,10 +359,8 @@ public partial class MainWindow
 
     void OnReactiveTempChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        // Pendant InitializeComponent, le Minimum du curseur déclenche cet événement : on l'ignore.
         if (!IsInitialized || _loadingLighting)
             return;
-        // Garde au moins 5 °C entre « froid » et « chaud ».
         if (sender == ColdTempSlider && HotTempSlider.Value < ColdTempSlider.Value + 5)
             HotTempSlider.Value = Math.Min(HotTempSlider.Maximum, ColdTempSlider.Value + 5);
         else if (sender == HotTempSlider && ColdTempSlider.Value > HotTempSlider.Value - 5)
@@ -429,9 +412,6 @@ public partial class MainWindow
         }
     }
 
-    // ───────────────────────── Aperçu animé ─────────────────────────
-
-    /// <summary>Simule à l'écran l'effet envoyé aux LED.</summary>
     void UpdatePreview()
     {
         var t = _previewClock.Elapsed.TotalSeconds;

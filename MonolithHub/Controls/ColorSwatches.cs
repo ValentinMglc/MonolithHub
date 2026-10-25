@@ -4,7 +4,6 @@ using System.Windows.Media;
 
 namespace MonolithHub.Controls;
 
-/// <summary>Rangée de pastilles de couleur (même palette que l'éditeur de zone).</summary>
 public sealed class ColorSwatches : WrapPanel
 {
     string _selected = "";

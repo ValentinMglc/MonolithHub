@@ -18,7 +18,6 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <!-- ══════════════════ Barre latérale ══════════════════ -->
             <DockPanel Background="{StaticResource SidebarBrush}">
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="22,18,0,28">
                     <Image Source="pack://application:,,,/MonolithHub;component/app.ico" Width="30" Height="30"
@@ -29,7 +28,6 @@
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Résumé en direct, visible depuis toutes les pages -->
                 <Border DockPanel.Dock="Bottom" Margin="14,0,14,16" Padding="14,12" CornerRadius="10"
                         Background="{StaticResource CardBrush}">
                     <StackPanel>
@@ -75,7 +73,6 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <!-- ══════════════════ Barre de titre ══════════════════ -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Button Style="{StaticResource CaptionButton}" Click="OnMinimize"
                             WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="{l:T Caption_Minimize}">
@@ -92,7 +89,6 @@
                 </StackPanel>
 
                 <Grid x:Name="PageHost" Grid.Row="1">
-                    <!-- ══════════════════ Tableau de bord ══════════════════ -->
                     <ScrollViewer x:Name="DashboardPage" Padding="24,0,24,20">
                         <StackPanel>
                             <DockPanel Margin="6,0,6,14">
@@ -120,7 +116,6 @@
                             </Border>
 
                             <UniformGrid Columns="3">
-                                <!-- CPU -->
                                 <Border Style="{StaticResource Card}">
                                     <DockPanel>
                                         <StackPanel DockPanel.Dock="Bottom">
@@ -163,7 +158,6 @@
                                     </StackPanel>
                                     </DockPanel>
                                 </Border>
-                                <!-- GPU -->
                                 <Border Style="{StaticResource Card}">
                                     <DockPanel>
                                         <StackPanel DockPanel.Dock="Bottom">
@@ -210,7 +204,6 @@
                                     </StackPanel>
                                     </DockPanel>
                                 </Border>
-                                <!-- RAM -->
                                 <Border Style="{StaticResource Card}">
                                     <DockPanel>
                                         <StackPanel DockPanel.Dock="Bottom">
@@ -256,7 +249,6 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <!-- Réseau -->
                                 <Border Style="{StaticResource Card}">
                                     <StackPanel>
                                         <DockPanel Margin="0,0,0,14">
@@ -291,7 +283,6 @@
                                         </Grid>
                                     </StackPanel>
                                 </Border>
-                                <!-- Stockage -->
                                 <Border Grid.Column="1" Style="{StaticResource Card}">
                                     <StackPanel>
                                         <DockPanel Margin="0,0,0,14">
@@ -326,7 +317,6 @@
                                 </Border>
                             </Grid>
 
-                            <!-- Processus -->
                             <Border Style="{StaticResource Card}">
                                 <StackPanel>
                                     <DockPanel Margin="0,0,0,12">
@@ -375,7 +365,6 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <!-- ══════════════════ Capteurs ══════════════════ -->
                     <ScrollViewer x:Name="SensorsPage" Padding="24,0,24,20" Visibility="Collapsed">
                         <StackPanel>
                             <DockPanel Margin="6,0,6,14">
@@ -451,7 +440,6 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <!-- ══════════════════ Éclairage ══════════════════ -->
                     <ScrollViewer x:Name="LightingPage" Padding="24,0,24,20" Visibility="Collapsed">
                         <StackPanel>
                             <DockPanel Margin="6,0,6,14">
@@ -469,7 +457,6 @@
                                 <TextBlock Text="{l:T Nav_Lighting}" Style="{StaticResource PageTitle}"/>
                             </DockPanel>
 
-                            <!-- PC sans contrôleur compatible -->
                             <Border x:Name="UnsupportedCard" Style="{StaticResource Card}" Visibility="Collapsed" Padding="24,22">
                                 <DockPanel>
                                     <TextBlock Text="&#xEA80;" Style="{StaticResource Icon}" FontSize="28" Margin="0,0,18,0" VerticalAlignment="Top"/>
@@ -484,7 +471,6 @@
                             </Border>
 
                             <StackPanel x:Name="LightingControls">
-                            <!-- Contrôleur présent mais utilisé par une autre application -->
                             <Border x:Name="BusyCard" Style="{StaticResource Card}" Visibility="Collapsed"
                                     Background="#1FFFB020" BorderBrush="#55FFB020" Padding="14,10">
                                 <DockPanel>
@@ -497,7 +483,6 @@
                                 </DockPanel>
                             </Border>
 
-                            <!-- Profils -->
                             <Border Style="{StaticResource Card}">
                                 <StackPanel>
                                     <DockPanel Margin="0,0,0,12">
@@ -538,14 +523,12 @@
                                     <ColumnDefinition Width="6*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Aperçu du boîtier -->
                                 <Border Style="{StaticResource Card}">
                                     <StackPanel>
                                         <TextBlock Text="{l:T Light_ClickZone}" Style="{StaticResource SubtleText}"
                                                    HorizontalAlignment="Center" Margin="0,0,0,10"/>
                                         <Viewbox Height="300" Stretch="Uniform">
                                             <Canvas Width="400" Height="345">
-                                                <!-- Façade -->
                                                 <Grid x:Name="LogoHit" Canvas.Left="20" Canvas.Top="10" Width="130" Height="300"
                                                       Background="Transparent" Cursor="Hand" MouseLeftButtonUp="OnLogoZoneClick">
                                                     <Border x:Name="LogoSelection" CornerRadius="10" BorderThickness="2" Margin="-8"
@@ -562,7 +545,6 @@
                                                 <TextBlock Canvas.Left="20" Canvas.Top="326" Width="130" TextAlignment="Center"
                                                            Text="{l:T Light_LogoFront}" Style="{StaticResource SubtleText}"/>
 
-                                                <!-- Côté vitré -->
                                                 <Grid x:Name="BarHit" Canvas.Left="175" Canvas.Top="10" Width="205" Height="300"
                                                       Background="Transparent" Cursor="Hand" MouseLeftButtonUp="OnBarZoneClick">
                                                     <Border x:Name="BarSelection" CornerRadius="10" BorderThickness="2" Margin="-8"
@@ -601,7 +583,6 @@
                                     </StackPanel>
                                 </Border>
 
-                                <!-- Réglages -->
                                 <Border x:Name="EditorCard" Grid.Column="1" Style="{StaticResource Card}">
                                     <StackPanel>
                                         <TextBlock x:Name="EditorTitle" Text="{l:T Editor_BothTitle}" Style="{StaticResource CardTitle}"/>
@@ -611,7 +592,6 @@
                                 </Border>
                             </Grid>
 
-                            <!-- Couleur selon la température -->
                             <Border Style="{StaticResource Card}">
                                 <StackPanel>
                                     <DockPanel>
@@ -654,7 +634,6 @@
                                             </StackPanel>
                                         </Grid>
 
-                                        <!-- Dégradé avec la position de la température actuelle -->
                                         <Grid Height="16" Margin="0,0,0,6">
                                             <Border CornerRadius="8">
                                                 <Border.Background>
@@ -708,12 +687,10 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <!-- ══════════════════ Paramètres ══════════════════ -->
                     <ScrollViewer x:Name="SettingsPage" Padding="24,0,24,20" Visibility="Collapsed">
                         <StackPanel>
                             <TextBlock Text="{l:T Nav_Settings}" Style="{StaticResource PageTitle}" Margin="6,0,6,14"/>
 
-                            <!-- Langue -->
                             <Border Style="{StaticResource Card}">
                                 <DockPanel>
                                     <WrapPanel x:Name="LanguagePanel" DockPanel.Dock="Right" VerticalAlignment="Center">
@@ -834,7 +811,6 @@
                                 </StackPanel>
                             </Border>
 
-                            <!-- À propos -->
                             <Border Style="{StaticResource Card}">
                                 <StackPanel>
                                     <DockPanel Margin="0,0,0,14">
@@ -889,7 +865,6 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <!-- ══════════════════ Système ══════════════════ -->
                     <ScrollViewer x:Name="SystemPage" Padding="24,0,24,20" Visibility="Collapsed">
                         <StackPanel>
                             <DockPanel Margin="6,0,6,14">
@@ -913,7 +888,6 @@
                     </ScrollViewer>
                 </Grid>
 
-                <!-- Notification éphémère -->
                 <Border x:Name="Toast" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,24"
                         Padding="16,10" CornerRadius="10" Background="#2A2B33" BorderBrush="#3A3B44" BorderThickness="1"
                         Opacity="0" IsHitTestVisible="False">

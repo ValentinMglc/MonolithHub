@@ -3,7 +3,6 @@ using System.Windows.Media;
 
 namespace MonolithHub.Controls;
 
-/// <summary>Jauge circulaire légère dessinée directement (pas de template).</summary>
 public sealed class RingGauge : FrameworkElement
 {
     public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
@@ -22,7 +21,6 @@ public sealed class RingGauge : FrameworkElement
         nameof(FillBrush), typeof(Brush), typeof(RingGauge),
         new FrameworkPropertyMetadata(Brushes.Red, FrameworkPropertyMetadataOptions.AffectsRender));
 
-    /// <summary>Pourcentage, de 0 à 100.</summary>
     public double Value { get => (double)GetValue(ValueProperty); set => SetValue(ValueProperty, value); }
     public double Thickness { get => (double)GetValue(ThicknessProperty); set => SetValue(ThicknessProperty, value); }
     public Brush TrackBrush { get => (Brush)GetValue(TrackBrushProperty); set => SetValue(TrackBrushProperty, value); }
@@ -50,7 +48,6 @@ public sealed class RingGauge : FrameworkElement
             return;
         }
 
-        // Arc dans le sens horaire depuis le haut.
         var angle = fraction * 2 * Math.PI;
         var start = new Point(center.X, center.Y - radius);
         var end = new Point(center.X + radius * Math.Sin(angle), center.Y - radius * Math.Cos(angle));

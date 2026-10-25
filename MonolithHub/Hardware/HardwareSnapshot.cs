@@ -38,10 +38,8 @@ public sealed class HardwareSnapshot
     public double UploadMbps { get; init; }
 
     public IReadOnlyList<DriveStat> Drives { get; init; } = [];
-    /// <summary>Null quand la liste n'a pas été recalculée à ce tick.</summary>
     public IReadOnlyList<ProcessStat>? TopProcesses { get; init; }
     public IReadOnlyList<SensorReading> Sensors { get; init; } = [];
 
-    /// <summary>Faux si le pilote bas niveau (PawnIO) est absent : pas de température CPU.</summary>
     public bool LowLevelAccess { get; init; }
 }
